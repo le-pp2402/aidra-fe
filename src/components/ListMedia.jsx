@@ -4,7 +4,7 @@ import { Label } from "./ui/label";
 import { useState, useEffect } from "react";
 import { Progress } from "./ui/progress";
 
-function getNumber (str) {
+function getNumber(str) {
     var num = 0;
     console.log(str);
     for (let i = 0; i < str.length; i++) {
@@ -13,20 +13,20 @@ function getNumber (str) {
         }
     }
     console.log(num);
-    return num; 
+    return num;
 }
 
 function MakeItCool(str) {
     var res;
-    if (str === "IN QUEUE") {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-        res = <p className="text-red-600"> Status: { str }</p>
+    if (str === "IN QUEUE") {
+        res = <p className="text-red-600"> Status: {str}</p>
     } else {
-        res = <p className="text-green-600"> Status: { str }</p> 
+        res = <p className="text-green-600"> Status: {str}</p>
     }
     return res;
 }
 
-function Status (str) {
+function Status(str) {
     if (getNumber(str) == 0) {
         return (
             <Label> {MakeItCool(str)} </Label>
@@ -41,33 +41,33 @@ function Status (str) {
     }
 }
 
-function MediaDetail ({media, handleGet}) {
+function MediaDetail({ media, handleGet }) {
     return (
         <Card className="w-[350px]">
-        <CardHeader>
-            <CardTitle> {media.name} </CardTitle>
-        </CardHeader>
-        <CardContent>
-            <form>
-                <div className="grid w-full items-center gap-4">
-                    <div className="flex flex-col space-y-1.5">
-                    <Label> Tiêu đề: {media.mediaPath}</Label>
+            <CardHeader>
+                <CardTitle> {media.name} </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <form>
+                    <div className="grid w-full items-center gap-4">
+                        <div className="flex flex-col space-y-1.5">
+                            <Label> Tiêu đề: {media.mediaPath}</Label>
+                        </div>
+                        <div className="flex flex-col space-y-1.5">
+                            <Label> {Status(media.status)}   </Label>
+                        </div>
                     </div>
-                    <div className="flex flex-col space-y-1.5">
-                    <Label> {Status(media.status)}   </Label>
-                    </div>
-                </div>
-            </form>
-        </CardContent>
-        <CardFooter className="flex justify-between float-right">
-            <Button onClick={() => handleGet(media.id)}> Get </Button>
-        </CardFooter>
+                </form>
+            </CardContent>
+            <CardFooter className="flex justify-between float-right">
+                <Button onClick={() => handleGet(media.id)}> Get </Button>
+            </CardFooter>
         </Card>
     )
-    
+
 }
 
-export function ListMedia({handleGet}) {
+export function ListMedia({ handleGet }) {
     const [mediaList, setMediaList] = useState([]);
 
     useEffect(() => {
@@ -91,7 +91,7 @@ export function ListMedia({handleGet}) {
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-3">
                 {mediaList.length > 0 ? (
                     mediaList.map((media) => (
-                        <MediaDetail media = {media} key = {media.id} handleGet = {handleGet} />
+                        <MediaDetail media={media} key={media.id} handleGet={handleGet} />
                     ))
                 ) : (
                     <p>You haven't uploaded any media yet</p>

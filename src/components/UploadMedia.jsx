@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form"
 import { Label } from "./ui/label";
 
-export function UploadMedia () {
+export function UploadMedia() {
     const [media, setMedia] = useState();
     const [name, setName] = useState('');
 
@@ -23,17 +23,17 @@ export function UploadMedia () {
         var formData = new FormData();
 
         formData.append('name', name);
-        formData.append('media', media); 
-        
+        formData.append('media', media);
+
         try {
             const response = await fetch(url, {
                 method: "POST",
                 body: formData,
-              });
-            console.log(await response.json());   
+            });
+            console.log(await response.json());
             window.location.reload();
         } catch (e) {
-            console.error   (e);
+            console.error(e);
         }
     }
 
@@ -48,16 +48,16 @@ export function UploadMedia () {
     };
 
     return (
-     <Form className="max-w-sm mx-auto">
-        <form onSubmit={sendFile}>
-            <h1 className="text-2xl font-bold mb-3 text-center">Upload media</h1>
-            <Label htmlFor="filename">Media name: </Label>
-                <Input onChange = {handleChange} type="text" placeholder="..." required />
+        <Form className="max-w-sm mx-auto">
+            <form onSubmit={sendFile}>
+                <h1 className="text-2xl font-bold mb-3 text-center">Upload media</h1>
+                <Label htmlFor="filename">Media name: </Label>
+                <Input onChange={handleChange} type="text" placeholder="..." required />
                 <Label htmlFor="user_avatar">Upload file</Label>
-                <Input type="file" onChange={handleChangeFile}/>
+                <Input type="file" onChange={handleChangeFile} />
                 <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Max size: 2GB</div>
-            <Button type = "submit">Submit</Button>
-        </form>
-      </Form>
+                <Button type="submit">Submit</Button>
+            </form>
+        </Form>
     )
 }
